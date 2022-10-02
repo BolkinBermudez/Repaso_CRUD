@@ -64,6 +64,9 @@
             </td>
         </tr>
     </table>
+
+<-- ir a l login!-->
+<a href="login.php"></a>
 </form>
 </body>
 </html>

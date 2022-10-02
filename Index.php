@@ -7,10 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+<a href="login.php"></a>
     <h1>Index</h1>
     <?php 
         require_once('Controller/Usuario_Controller.php');
     ?>
+    <a href="login.php">Log-in</a>
 
 </body>
 </html>
