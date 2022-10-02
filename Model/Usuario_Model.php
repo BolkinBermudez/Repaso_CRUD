@@ -26,6 +26,7 @@ Class Usuario_Model{
         $consulta->bindValue(":login", $login);
 
         $consulta->bindValue("password",$pass);
+        
 
         $consulta->execute();
 
