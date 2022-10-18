@@ -1,43 +1,49 @@
 <?php
 
-Class Usuario_Model{
+require_once('../controller/Login_Controller.php');
+
+Class Usuarios_Model{
 
     private $db;
     private $usuarios;
 
     public function __construct(){
 
-        require_once('Model/Conectar.php');
+        require_once('../model/Conectar.php');
         $this->db=Conectar::Conexion();
 
         $this->usuarios=array();
                 
     }
 
-    public function comprobar_Usuario(){
+   
 
-        $consulta=$this->db->query("SELECT * usuario WHERE Correo= :login AND pass= :password");
+    public function check_User(){
 
-        //Rescatamos los  datos que el usuario a añadido al formulario login
-        $login=htmlentities(addslashes($_POST["login"]));
-        $pass=htmlentities(addslashes($_POST["password"]));
+        try {
+           
+        $InstLoginController = new Login_Controller();
+        $login=$InstLoginController->getNombreUsuario();
+        $pass=$InstLoginController->getPasswordUser();
+        
+    
+        $sql="SELECT * FROM usuario WHERE Correo= ? AND pass= ?";
 
-        //Mostramos la equivalencia entre los marcadores y las variables a pasar por consulta sql.
-        $consulta->bindValue(":login", $login);
+        //Almacenamos el objeto que devuelve el metodo prepare del objeto conexion en donde enviamos por parametro la consulta
+        $resultado=$this->db->prepare($sql);
+       
+        //Rescatamos los  datos que el usuario a añadido al formulario login que encapsulamos en el controlador
+        $resultado->execute(array($login, $pass));  
 
-        $consulta->bindValue("password",$pass);
+        $logeo=$resultado->fetchAll(PDO::FETCH_OBJ);
+
         
 
-        $consulta->execute();
-
-        $numero_Registros=$consulta->rowCount();
-
-        if ($numero_Registros !=0){
-            echo("Ingreso");
-
-        }else{
-            header("location:login.php");
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
+        echo $logeo;
+        return $logeo;
     }
 
     public function get_Usuarios(){
@@ -51,6 +57,8 @@ Class Usuario_Model{
         }
         return $this->usuarios;
     }
+
+   
 
 }
 ?>
