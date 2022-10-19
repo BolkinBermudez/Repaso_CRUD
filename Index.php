@@ -33,13 +33,13 @@
   <div class="login-box-body">
     <p class="login-box-msg">Ingresa tus datos para iniciar seción</p>
 
-    <form action="Controller/Login_Controller.php" method="post">
+    <form action="controller/Login_Controller.php" method="post">
       <div class="form-group has-feedback">
-        <input type="email" id="email" class="form-control" name="login" placeholder="Correo Electronico">
+        <input type="email" id="email" class="form-control" name="email" placeholder="Correo Electronico">
         <span  class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control"  name="password" placeholder="Contraseña">
+        <input type="password" class="form-control" name="password" placeholder="Contraseña">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -52,7 +52,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" name="enviar" value="LOGIN" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+          <button type="submit" name="enviar" value="login" class="btn btn-primary btn-block btn-flat">Ingresar</button>
         </div>
         <!-- /.col -->
       </div>
