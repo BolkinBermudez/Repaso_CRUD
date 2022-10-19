@@ -12,7 +12,7 @@ require_once('plantilla/Aside.php');
 
 
 //Content
-$contenido= isset($_GET['c']) ? strtolower($_GET['c']):'ejemplo';
+$contenido= isset($_GET['c']) ? strtolower($_GET['c']):'inventario';
 require_once('Contenido/'.$contenido.'.php');
 
 
